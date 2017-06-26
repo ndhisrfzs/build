@@ -19,7 +19,7 @@
 
 ## 安装依赖项
 1. cd build
-2. npm install
+2. npm install --production 
 
 # 启动命令
 foever start . >gmlog.log 

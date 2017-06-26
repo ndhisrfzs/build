@@ -10,13 +10,13 @@
   },
   "mysql": {
     "host": "localhost",
-    "port": 3306,
+    "port": 5306,
     "url": "",
     "database": "permiss",
-    "password": "gaga",
+    "password": "Aa123456",
     "name": "mysql",
     "debug": true,
-    "user": "root",
+    "user": "hhw",
     "connector": "mysql"
   }
 }
