@@ -22,4 +22,4 @@
 2. npm install --production 
 
 # 启动命令
-foever start . >gmlog.log 
+forever start . >gmlog.log 
