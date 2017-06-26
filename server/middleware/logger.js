@@ -1,0 +1,1 @@
+var winston=require("winston"),_=require("lodash");module.exports=function(){return function(a,b,c){b.once("finish",function(){winston.log("info","后台日志",_.extend({timestamp:Date.now(),pid:process.pid,url:a.baseUrl,method:a.method,body:JSON.stringify(a.body),status:b.statusCode},a.query))}),c()}};

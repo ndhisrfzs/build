@@ -1,0 +1,96 @@
+{
+  "name": "action",
+  "base": "PersistedModel",
+  "strict": false,
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "actTitle": {
+      "type": "string",
+      "required": true
+    },
+    "actIcon": {
+      "type": "string"
+    },
+    "createAt": {
+      "type": "number"
+    },
+    "updateAt": {
+      "type": "number"
+    },
+    "actKey": {
+      "type": "string",
+      "required": true
+    },
+    "actType": {
+      "type": "number",
+      "required": true
+    },
+    "optType": {
+      "type": "number",
+      "required": true
+    },
+    "actId": {
+      "type": "number",
+      "id": true,
+      "required": false,
+      "index": true
+    },
+    "schemaId": {
+      "type": "number"
+    },
+    "schemaFormId": {
+      "type": "number"
+    },
+    "templateUrl": {
+      "type": "string"
+    },
+    "schemaDataId": {
+      "type": "number"
+    },
+    "clearCurrentItem": {
+      "type": "boolean"
+    },
+    "jumpUrl": {
+      "type": "string"
+    },
+    "controller": {
+      "type": "string"
+    },
+    "needData": {
+      "type": "boolean"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "menu": {
+      "type": "belongsTo",
+      "model": "menu",
+      "foreignKey": ""
+    },
+    "actioninterfaces": {
+      "type": "hasMany",
+      "model": "actioninterface",
+      "foreignKey": "actId"
+    },
+    "schema": {
+      "type": "belongsTo",
+      "model": "schema",
+      "foreignKey": "schemaId"
+    },
+    "schemaForm": {
+      "type": "belongsTo",
+      "model": "schema",
+      "foreignKey": "schemaFormId"
+    },
+    "schemaData": {
+      "type": "belongsTo",
+      "model": "schema",
+      "foreignKey": "schemaDataId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

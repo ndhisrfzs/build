@@ -1,0 +1,49 @@
+{
+  "name": "interface",
+  "base": "PersistedModel",
+  "strict": false,
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "baseUrl": {
+      "type": "string",
+      "required": false
+    },
+    "isLocal": {
+      "type": "boolean"
+    },
+    "type": {
+      "type": "string",
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true,
+      "index": true
+    },
+    "params": {
+      "type": "string"
+    },
+    "interfaceId": {
+      "type": "number",
+      "id": true,
+      "required": false
+    },
+    "port": {
+      "type": "number"
+    },
+    "interface": {
+      "type": "string",
+      "required": true
+    },
+    "clearData": {
+      "type": "boolean"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

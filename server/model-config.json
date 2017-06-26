@@ -1,0 +1,107 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "./models"
+    ],
+    "mixins": [
+      "loopback/common/mixins",
+      "loopback/server/mixins",
+      "../common/mixins",
+      "./mixins"
+    ]
+  },
+  "User": {
+    "dataSource": "db"
+  },
+  "AccessToken": {
+    "dataSource": "db",
+    "public": false
+  },
+  "ACL": {
+    "dataSource": "db",
+    "public": false
+  },
+  "RoleMapping": {
+    "dataSource": "db",
+    "public": false
+  },
+  "Role": {
+    "dataSource": "db",
+    "public": false
+  },
+  "menu": {
+    "dataSource": "mysql",
+    "public": true,
+    "$promise": {},
+    "$resolved": true
+  },
+  "action": {
+    "dataSource": "mysql",
+    "public": true,
+    "$promise": {},
+    "$resolved": true
+  },
+  "group": {
+    "dataSource": "mysql",
+    "public": true,
+    "$promise": {},
+    "$resolved": true
+  },
+  "genre": {
+    "dataSource": "mysql",
+    "public": true,
+    "$promise": {},
+    "$resolved": true
+  },
+  "groupaction": {
+    "dataSource": "mysql",
+    "public": true,
+    "$promise": {},
+    "$resolved": true
+  },
+  "actor": {
+    "dataSource": "mysql",
+    "public": true,
+    "$promise": {},
+    "$resolved": true
+  },
+  "actorgroup": {
+    "dataSource": "mysql",
+    "public": true,
+    "$promise": {},
+    "$resolved": true
+  },
+  "person": {
+    "dataSource": "mysql",
+    "public": true,
+    "$promise": {},
+    "$resolved": true
+  },
+  "interface": {
+    "dataSource": "mysql",
+    "public": true,
+    "$promise": {},
+    "$resolved": true
+  },
+  "schema": {
+    "dataSource": "mysql",
+    "public": true,
+    "$promise": {},
+    "$resolved": true
+  },
+  "actioninterface": {
+    "dataSource": "mysql",
+    "public": true,
+    "$promise": {},
+    "$resolved": true
+  },
+  "server": {
+    "dataSource": "mysql",
+    "public": true,
+    "$promise": {},
+    "$resolved": true
+  }
+}

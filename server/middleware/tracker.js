@@ -1,0 +1,1 @@
+module.exports=function(){return function(a,b,c){console.log("Request tracking middleware triggered on %s",a.url);var d=process.hrtime();b.once("finish",function(){var a=process.hrtime(d),b=1e3*a[0]+1e-6*a[1];console.log("The request processing time is %d ms.",b)}),c()}};

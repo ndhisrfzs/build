@@ -1,0 +1,39 @@
+{
+  "name": "server",
+  "base": "PersistedModel",
+  "strict": false,
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "isDefault": {
+      "type": "boolean"
+    },
+    "serAddress": {
+      "type": "string",
+      "required": true,
+      "index": true
+    },
+    "serID": {
+      "type": "number",
+      "id": true
+    },
+    "serProtocol": {
+      "type": "string",
+      "required": true
+    },
+    "serName": {
+      "type": "string",
+      "required": true
+    },
+    "serPort": {
+      "type": "number",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

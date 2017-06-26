@@ -1,0 +1,28 @@
+{
+  "name": "groupaction",
+  "base": "PersistedModel",
+  "strict": false,
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "gaId": {
+      "type": "number",
+      "id": true,
+      "index": true
+    },
+    "groupId": {
+      "type": "number",
+      "required": true
+    },
+    "actId": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

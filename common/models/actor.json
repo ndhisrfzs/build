@@ -1,0 +1,41 @@
+{
+  "name": "actor",
+  "base": "PersistedModel",
+  "strict": false,
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "createAt": {
+      "type": "number"
+    },
+    "updateAt": {
+      "type": "number"
+    },
+    "aorComment": {
+      "type": "string"
+    },
+    "aorTitle": {
+      "type": "string",
+      "id": false,
+      "required": true
+    },
+    "aorId": {
+      "type": "number",
+      "id": true,
+      "required": false,
+      "index": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "actorgroups": {
+      "type": "hasMany",
+      "model": "actorgroup",
+      "foreignKey": "aorId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

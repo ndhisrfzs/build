@@ -1,0 +1,17 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "mysql": {
+    "host": "localhost",
+    "port": 3306,
+    "url": "common",
+    "database": "permiss",
+    "password": "gaga",
+    "name": "mysql",
+    "debug": true,
+    "user": "root",
+    "connector": "mysql"
+  }
+}

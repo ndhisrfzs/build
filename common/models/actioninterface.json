@@ -1,0 +1,37 @@
+{
+  "name": "actioninterface",
+  "base": "PersistedModel",
+  "strict": false,
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "id": {
+      "type": "number",
+      "id": true
+    },
+    "actId": {
+      "type": "number",
+      "required": true
+    },
+    "key": {
+      "type": "string",
+      "required": true
+    },
+    "interfaceId": {
+      "type": "number",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "interface": {
+      "type": "belongsTo",
+      "model": "interface",
+      "foreignKey": "interfaceId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

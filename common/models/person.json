@@ -1,0 +1,41 @@
+{
+  "name": "person",
+  "base": "PersistedModel",
+  "strict": false,
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "nickname": {
+      "type": "string",
+      "id": false,
+      "required": true,
+      "index": true
+    },
+    "userToken": {
+      "type": "string",
+      "required": true
+    },
+    "aorId": {
+      "type": "number",
+      "required": true,
+      "index": true
+    },
+    "personId": {
+      "type": "number",
+      "id": true,
+      "required": false
+    }
+  },
+  "validations": [],
+  "relations": {
+    "actor": {
+      "type": "belongsTo",
+      "model": "actor",
+      "foreignKey": "aorId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

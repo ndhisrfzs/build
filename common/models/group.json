@@ -1,0 +1,39 @@
+{
+  "name": "group",
+  "base": "PersistedModel",
+  "strict": false,
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "groupId": {
+      "type": "number",
+      "id": true,
+      "index": true
+    },
+    "createAt": {
+      "type": "number"
+    },
+    "updateAt": {
+      "type": "number"
+    },
+    "groupTitle": {
+      "type": "string",
+      "required": true
+    },
+    "groupComment": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "groupactions": {
+      "type": "hasMany",
+      "model": "groupaction",
+      "foreignKey": "groupId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

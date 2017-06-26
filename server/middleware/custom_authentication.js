@@ -1,0 +1,1 @@
+var http=require("http"),Promise=require("bluebird"),app=require("../server");module.exports=function(){return function(a,b,c){c()}};

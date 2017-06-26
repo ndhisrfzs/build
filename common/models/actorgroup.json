@@ -1,0 +1,28 @@
+{
+  "name": "actorgroup",
+  "base": "PersistedModel",
+  "strict": false,
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "groupId": {
+      "type": "number",
+      "required": true
+    },
+    "agId": {
+      "type": "number",
+      "id": true,
+      "index": true
+    },
+    "aorId": {
+      "type": "number",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}
