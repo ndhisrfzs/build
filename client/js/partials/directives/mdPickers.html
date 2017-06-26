@@ -1,0 +1,98 @@
+<div layout="row">
+    <div class="am-fade-and-scale md-dialog-container"
+         ng-show="datepicker.showPopup"
+         style="top: 0px;position: fixed;">
+        <md-dialog aria-label="" class="mdp-datepicker "
+                   md-theme="dark"
+                   ng-class="{ 'md-transition-in':datepicker.showPopup,  'portrait': !$mdMedia('gt-sm') }">
+            <md-dialog-content layout="row">
+                <div layout="column" layout-align="start center">
+                    <md-toolbar layout-align="center center" class="mdp-datepicker-dow md-primary"><span>{{ datepicker.currentMoment.format("dddd") }}</span>
+                    </md-toolbar>
+                    <md-toolbar layout-align="center center" class="mdp-datepicker-date md-primary"
+                                layout="column">
+                        <div class="mdp-datepicker-month">{{ datepicker.currentMoment.format("MMM") }}</div>
+                        <div class="mdp-datepicker-day">{{ datepicker.currentMoment.format("DD") }}</div>
+                        <md-select class="mdp-datepicker-year"
+                                   placeholder="{{ datepicker.currentMoment.format('YYYY') }}"
+                                   ng-model="year" ng-change="datepicker.setYear()">
+                            <md-option ng-value="year" ng-repeat="year in yearsOptions">{{ year }}</md-option>
+                        </md-select>
+                    </md-toolbar>
+                </div>
+                <div layout="column" layout-align="start center" class="mdp-datepicker-calendar">
+                    <div layout="row" layout-align="space-between center" class="mdp-datepicker-monthyear">
+                        <md-button aria-label="previous month" class="md-icon-button" ng-click="datepicker.prevMonth()">
+                            <!--<md-icon md-font-set="material-icons"> chevron_left</md-icon>-->
+                            <ng-md-icon icon="arrow_back"></ng-md-icon>
+                        </md-button>
+
+                        {{ datepicker.currentMoment.format("MMMM YYYY") }}
+                        <md-button aria-label="next month" class="md-icon-button" ng-click="datepicker.nextMonth()">
+                            <!--<md-icon md-font-set="material-icons"> chevron_right</md-icon>-->
+                            <ng-md-icon icon="arrow_forward"></ng-md-icon>
+                        </md-button>
+                    </div>
+                    <div layout="row" layout-align="space-around center" class="mdp-datepicker-week-days">
+                        <div layout layout-align="center center" ng-repeat="d in datepicker.weekDays track by $index">{{
+                            d
+                            }}
+                        </div>
+                    </div>
+                    <div layout="row" layout-wrap class="mdp-datepicker-days">
+                        <div layout layout-align="center center"
+                             ng-repeat-start="n in datepicker.getDaysInMonth() track by $index">
+                            <md-button class="md-icon-button md-raised" aria-label="seleziona giorno"
+                                       ng-if="n !== false"
+                                       ng-class="{'md-accent': datepicker.currentMoment.date() == n}"
+                                       ng-click="datepicker.selectDate(n)">{{ n }}
+                            </md-button>
+                        </div>
+                        <div flex ng-if="($index + 1) % 7 == 0" ng-repeat-end></div>
+                    </div>
+                </div>
+            </md-dialog-content>
+
+            <div layout="row" flex-order="2">
+                <div flex="10" layout="row" layout-align="center center">
+                    <span class="md-body-1">小时</span>
+                </div>
+                <md-slider aria-label="小时" flex ng-model="datepicker.hour" min="0" max="23" class="md-accent">
+                </md-slider>
+                <span flex="10" layout="row" layout-align="center center">{{ datepicker.hour }}</span>
+            </div>
+            <div layout="row" flex-order="2">
+                <div flex="10" layout layout-align="center center">
+                    <span class="md-body-1">分钟</span>
+                </div>
+                <md-slider aria-label="分钟" flex ng-model="datepicker.minute" min="0" max="59" class="md-accent">
+                </md-slider>
+                <span flex="10" layout="row" layout-align="center center">{{ datepicker.minute }}</span>
+            </div>
+            <div layout="row" flex-order="2">
+                <div flex="10" layout layout-align="center center">
+                    <span class="md-body-1">秒</span>
+                </div>
+                <md-slider aria-label="秒" flex ng-model="datepicker.second" min="0" max="59" class="md-accent">
+                </md-slider>
+                <span flex="10" layout="row" layout-align="center center">{{ datepicker.second }}</span>
+            </div>
+
+            <div class="md-actions" layout="row">
+                <md-button ng-click="datepicker.cancel()" aria-label="LABEL_CANCEL">取消</md-button>
+                <md-button ng-click="datepicker.confirm()" aria-label="LABEL_OK">确定</md-button>
+            </div>
+        </md-dialog>
+    </div>
+    <md-input-container flex>
+        <label>{{datepicker.title}}</label>
+        <input type="text" ng-readonly="true" ng-model="datepicker.strDate">
+        <ng-transclude flex-order="2"></ng-transclude>
+    </md-input-container>
+    <md-button class="md-icon-button"
+               aria-label=""
+               ng-click="datepicker.togglePopup()">
+        <md-icon class="md-datepicker-calendar-icon md-18" md-svg-icon="md-calendar" aria-label="md-calendar"
+                 role="img"></md-icon>
+    </md-button>
+</div>
