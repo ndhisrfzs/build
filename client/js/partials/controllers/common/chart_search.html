@@ -1,0 +1,49 @@
+<md-content class="md-whiteframe-z2" flex layout="column">
+    <md-toolbar md-theme="amazing">
+        <div class="md-toolbar-tools">
+            <h3>搜索</h3>
+            <span flex></span>
+            <md-button aria-label="重置搜索条件"
+                       class="md-icon-button md-ink-ripple"
+                       ng-click="chartCtl.resetSearch()">
+                <md-tooltip>
+                    重置搜索条件
+                </md-tooltip>
+                <ng-md-icon icon="clear_all"></ng-md-icon>
+            </md-button>
+            <md-button aria-label="刷新"
+                       class="md-icon-button md-ink-ripple"
+                       ng-click="chartCtl.getServerData()">
+                <md-tooltip>
+                    刷新
+                </md-tooltip>
+                <ng-md-icon icon="refresh"></ng-md-icon>
+            </md-button>
+            <md-button aria-label="关闭"
+                       class="md-icon-button md-ink-ripple"
+                       ng-click="chartCtl.toggleSearchBar()">
+                <md-tooltip>
+                    关闭
+                </md-tooltip>
+                <ng-md-icon icon="close"></ng-md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <!--搜索toolbar-->
+    <md-content flex>
+        <form name="searchForm"
+              layout="column"
+              flex
+              sf-schema="chartCtl.schema"
+              sf-form="chartCtl.searchForm"
+              sf-model="chartCtl.searchData">
+        </form>
+    </md-content>
+    <md-divider></md-divider>
+    <md-button ng-disabled="chartCtl.isBusy"
+               aria-label="search"
+               ng-click="chartCtl.doSearch(searchForm)">
+        过滤一下
+    </md-button>
+
+</md-content>

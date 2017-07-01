@@ -1,0 +1,14 @@
+<div class="schema-form-uploader-single" ng-class="form.htmlClass" flex>
+    <qiniu-uploader schema-validate="form"
+                    sf-field-model
+                    ng-model="$$value$$"
+                    name="{{form.key.slice(-1)[0]}}"
+                    form="form"
+                    flex
+                    schema="schema"></qiniu-uploader>
+    <md-input-container>
+        <div ng-messages="ngModel.$error">
+            <div sf-message ng-message></div>
+        </div>
+    </md-input-container>
+</div>
