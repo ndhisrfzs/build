@@ -171,7 +171,7 @@ var config:RequireConfig = {
         //'rangepicker'
     ],
     config: {
-        'common/services/config_constant': 'pro',
+        'common/services/config_constant': 'dev',
         'modules/app_module': [
             'ui.router',
             'permission',
@@ -187,8 +187,8 @@ var config:RequireConfig = {
             'restangular',
             'angular-loading-bar',
             'mdPickers',
-            'ui.sortable'//,
-            //'chart.js'
+            'ui.sortable',
+            'chart.js'
             //'smDateTimeRangePicker'
         ]
     },
