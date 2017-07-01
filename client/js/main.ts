@@ -171,7 +171,7 @@ var config:RequireConfig = {
         //'rangepicker'
     ],
     config: {
-        'common/services/config_constant': 'dev',
+        'common/services/config_constant': 'pro',
         'modules/app_module': [
             'ui.router',
             'permission',
