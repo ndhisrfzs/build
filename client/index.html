@@ -1,20 +1,20 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en"  manifest="gm.manifest">
 <head root>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-    <meta name="304Fix" content="safari-fix">
     <title>牛通天代理管理</title>
-    <link rel="stylesheet" href="styles/importer.css">
+    <link href="favicon.ico" rel="icon" type="image/x-icon">
+    <link rel="stylesheet" href="css/gm.min.css">
+    <script src="js/gm.js"></script>
+    <script>
+        require(['main']);
+    </script>
 </head>
-<body layout="column" flex -webkit-flex -ms-flex -moz-flex ui-view class="scale-fade">
-<!--<div ui-view flex class="scale-fade" layout="column">-->
-    <div class="spinner">
-        <div class="dot1"></div>
-        <div class="dot2"></div>
-    </div>
-<!--</div>-->
+<body layout="column" flex ui-view class="scale-fade">
+<div class="spinner">
+    <div class="dot1"></div>
+    <div class="dot2"></div>
+</div>
 </body>
-<script src="node_modules/requirejs/require.js" data-main="js/main"></script>
 </html>
