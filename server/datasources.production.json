@@ -1,12 +1,17 @@
 {
   "db": {
+    "host": "",
+    "port": 0,
+    "database": "",
+    "password": "",
     "name": "db",
-    "connector": "memory"
+    "connector": "memory",
+    "user": ""
   },
   "mysql": {
     "host": "localhost",
     "port": 5306,
-    "url": "common",
+    "url": "",
     "database": "agenttool",
     "password": "Aa@123456",
     "name": "mysql",
