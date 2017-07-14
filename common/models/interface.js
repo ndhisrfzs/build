@@ -1,1 +1,180 @@
-function executeCommand(a,b,c,d){return new Promise(function(e,f){var g,h,i,j,k={token:d.query.access_token,user_token:d.query.user_token},l={query:k,method:b.type,timeout:5e3};switch(b.params&&(h=b.params.split(","),c.pageCount&&(c.per_page=c.pageCount),_.forEach(h,function(a){pd=null,_.forEach(a.split("."),function(b){if(a=b,pd?pd=pd[b]:pd=c[b],!pd)return!1}),pd&&(k[a]=pd)})),g=b.baseUrl?"http://"+b.baseUrl+":"+(b.port||80)+b["interface"]:a.serProtocol+"://"+a.serAddress+":"+(a.serPort||80)+b["interface"],l.query.sign=md5(g+gm_secret),console.log("options:",l),console.log("data:",c),console.log("model:",b),console.log("server:",a),console.log("uri:",g),console.log("gm_secret:",gm_secret),b.type.toLowerCase()){case"get":i=rest.get(g,l);break;case"post":b.clearData||(l.data=c),i=rest.post(g,l)}i.on("success",function(a){try{a=JSON.parse(a)}catch(g){}if(console.log("result:",a),"error"===a.result)return j=new Error(a.msg),j.status=400,void f(j);if(a.data&&"/api/export_used_gift_codes"===b["interface"]){var h=(new Date).getTime().toString();return void fs.writeFile(path.join("gifts",h),a.data,function(b){return b?(b.status=400,f(b)):(a.url="/export_gift?user_token="+d.query.user_token+"&token="+d.query.access_token+"&name="+c.title+"&filename="+h,void e(a))})}e(a)}).on("error",f).on("timeout",function(a){j=new Error("调用接口超时:"+a),j.status=400,f(j)})})}var async=require("async"),Promise=require("bluebird"),_=require("lodash"),rest=require("restler"),fs=require("fs"),path=require("path"),app=require("../../server/server"),md5=require("blueimp-md5"),gm_secret="6db16ea48786f83c65750dd438bfe009";module.exports=function(a){a.execute=function(b,c,d,e){var f;async.auto({model:function(b){a.findOne({where:{interfaceId:d}},b)},server:function(a){return console.log("data-origin",c),c&&c.change_server?void a(null,c.change_server):void app.models.server.findOne({where:{isDefault:!0}},a)},execute:["model","server",function(a,d){d.model?executeCommand(d.server,d.model,c,b).then(function(b){a(null,b)},a):(f=new Error("没有找到接口!"),f.status=400)}]},function(a,b){return a?void e(a):void e(null,b.execute)})},a.remoteMethod("execute",{accepts:[{arg:"req",type:"object",http:{source:"req"}},{arg:"data",type:"object",http:{source:"body"}},{arg:"id",type:"number",required:!0}],returns:{root:!0,type:"object"},http:{verb:"post",path:"/:id/execute"}})};
+var async = require('async');
+var Promise = require('bluebird');
+var _ = require('lodash');
+var rest = require('restler');
+var fs = require('fs');
+var path = require('path');
+var app = require('../../server/server');
+var md5 = require('blueimp-md5');
+var gm_secret = '6db16ea48786f83c65750dd438bfe009';
+
+function executeCommand(server, model, data, req) {
+    return new Promise(function (resolve, reject) {
+        var params = {
+                token: req.query.access_token,
+                user_token: req.query.user_token
+            },
+            uri,
+            paramList,
+            htp,
+            err,
+            options = {
+                query: params,
+                method: model.type,
+                timeout: 5000
+            };
+
+        if (model.params) {
+            paramList = model.params.split(',');
+            if (data.pageCount) {
+                data.per_page = data.pageCount;
+            }
+            //处理参数params
+            _.forEach(paramList, function (param) {
+                pd = null;
+                _.forEach(param.split('.'), function (path) {
+                    param = path;
+                    if (!pd) {
+                        pd = data[path];
+                    } else {
+                        pd = pd[path];
+                    }
+                    if (!pd) {
+                        return false;
+                    }
+                });
+                pd && (params[param] = pd);
+            });
+        }
+
+        //拼接接口的地址
+        if (!model.baseUrl) {
+            uri = server.serProtocol + '://' + server.serAddress + ':' + (server.serPort || 80) + model.interface;
+        } else {
+            uri = 'http://' + model.baseUrl + ':' + (model.port || 80) + model.interface;
+        }
+
+        options.query.sign = md5(uri + gm_secret);
+
+        console.log("options:", options);
+        console.log("data:", data);
+        console.log("model:", model);
+        console.log("server:", server);
+        console.log("uri:", uri);
+        console.log("gm_secret:", gm_secret);
+
+        switch (model.type.toLowerCase()) {
+            case 'get':
+                htp = rest.get(uri, options);
+                break;
+            case 'post':
+		if(!model.clearData){
+		    options.data = data;
+		}
+                htp = rest.post(uri, options);
+                break;
+        }
+        htp.on('success', function (result) {
+                try {
+                    result = JSON.parse(result);
+                } catch (e) {
+
+                }
+                console.log("result:", result);
+                if (result.result === 'error') {
+                    err = new Error(result.msg);
+                    err.status = 400;
+                    reject(err);
+                    return;
+                }
+
+                if (result.data && model.interface === "/api/export_used_gift_codes") {
+                    var fn = new Date().getTime().toString();
+
+                    fs.writeFile(path.join('gifts', fn), result.data, function (err) {
+                        if (err) {
+                            err.status = 400;
+                            return reject(err);
+                        }
+//                        access_token: req.query.access_token,
+//                            user_token: req.query.user_token
+
+                        result.url = '/export_gift?user_token=' + req.query.user_token + '&token=' + req.query.access_token + '&name=' + data['title'] + '&filename=' + fn;
+                        resolve(result);
+                    });
+
+                    return;
+                } 
+	/*else if(result.data && result.data.user_token && model.interface === "/api/updateagentinfo"){
+		    Menu.dataSource.connector.execute("insert into person(aorid, nickname,userToken) values(9, ?, ?)", 	[result.data.username, result.data.user_token], next);
+		}*/
+
+                resolve(result);
+            })
+            .on('error', reject)
+            .on('timeout', function (ms) {
+                err = new Error('调用接口超时:' + ms);
+                err.status = 400;
+                reject(err);
+            });
+
+    });
+}
+
+module.exports = function (Interface) {
+    Interface.execute = function (req, data, id, next) {
+        var err;
+
+        async.auto({
+            model: function (cb) {
+                Interface.findOne({
+                    where: {
+                        interfaceId: id
+                    }
+                }, cb);
+            },
+            server: function (cb) {
+                console.log("data-origin", data);
+                if (data && data['change_server']) {
+                    cb(null, data['change_server']);
+                    return;
+                }
+
+                app.models.server.findOne({
+                    where: {
+                        isDefault: true
+                    }
+                }, cb);
+            },
+            execute: ['model', 'server', function (cb, results) {
+                if (results.model) {
+                    executeCommand(results.server, results.model, data, req).then(function (data) {
+                        cb(null, data);
+                    }, cb);
+                } else {
+                    err = new Error('没有找到接口!');
+                    err.status = 400;
+                }
+            }]
+        }, function finish(err, results) {
+            if (err) {
+                next(err);
+                return;
+            }
+            next(null, results.execute);
+        });
+
+    };
+
+    Interface.remoteMethod(
+        'execute', {
+            accepts: [
+                {arg: 'req', type: 'object', http: {source: 'req'}},
+                {arg: 'data', type: 'object', http: {source: 'body'}},
+                {arg: 'id', type: 'number', required: true}
+            ],
+            returns: {root: true, type: 'object'},
+            http: {verb: 'post', path: '/:id/execute'}
+        }
+    );
+};

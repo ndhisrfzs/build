@@ -1,1 +1,27 @@
-var csv=require("csv"),fs=require("fs"),path=require("path");module.exports=function(a){var b=a.loopback.Router();b.get("/export_gift",function(a,b,c){var d,e=a.query.name||"gift",f=a.query.filename||"1.txt";d=fs.createReadStream(path.join("gifts",f)),b.writeHead(200,{"Content-Type":"application/octet-stream;charset=utf8","Coneten-Length":100,"Content-Disposition":'attachment; filename="'+encodeURIComponent(e+".csv")+'"'}),d.pipe(csv.parse()).pipe(csv.stringify()).pipe(b),d.on("error",function(a){c(a)})}),a.use(b)};
+var csv = require('csv');
+var fs = require('fs');
+var path = require('path');
+
+module.exports = function (server) {
+    var router = server.loopback.Router();
+
+    router.get('/export_gift', function (req, res, next) {
+        var fname = req.query['name'] || 'gift';
+        var filename = req.query['filename'] || '1.txt';
+        var stream;
+
+        stream = fs.createReadStream(path.join('gifts', filename));
+        res.writeHead(200, {
+            'Content-Type': 'application/octet-stream;charset=utf8',
+            'Coneten-Length': 100,
+            'Content-Disposition': "attachment; filename=\"" + encodeURIComponent(fname + '.csv') + "\""
+        });
+        stream.pipe(csv.parse())
+            .pipe(csv.stringify())
+            .pipe(res);
+        stream.on('error', function (err) {
+            next(err);
+        });
+    });
+    server.use(router);
+};
