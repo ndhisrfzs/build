@@ -1,0 +1,18 @@
+<div aria-label="{{ form.title }}"
+     class="{{form.htmlClass}} md-input-has-messages schema-form-jsoneditor">
+    <!--<h3 ng-show="form.title && form.notitle !== true">{{ form.title }}</h3>-->
+
+    <md-datepicker class="{{form.htmlClass}} flex"
+                   md-theme="dark"
+                   ng-model="$$value$$"
+                   md-placeholder="{{ form.title }}"
+                   schema-validate="form"
+                   md-min-date="evalInScope(form.mdMinDate)"
+                   md-max-date="evalInScope(form.mdMaxDate)"
+                   md-date-filter="form.filter"></md-datepicker>
+    <md-input-container>
+        <div ng-messages="ngModel.$error">
+            <div sf-message ng-message></div>
+        </div>
+    </md-input-container>
+</div>

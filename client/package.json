@@ -1,0 +1,40 @@
+{
+  "name": "permiss",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "NICK",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.4.7",
+    "angular-animate": "^1.4.7",
+    "angular-aria": "^1.4.7",
+    "angular-chart.js": "^1.1.1",
+    "angular-cookies": "^1.4.7",
+    "angular-loading-bar": "^0.8.0",
+    "angular-material": "^*",
+    "angular-material-icons": "^0.6.0",
+    "angular-motion-sass": "0.0.1",
+    "angular-permission": "^1.0.6",
+    "angular-resource": "^1.4.8",
+    "angular-sanitize": "^1.4.7",
+    "angular-schema-form": "^0.8.12",
+    "angular-touch": "^1.4.7",
+    "angular-ui-router": "^1.0.3",
+    "elasticsearch": "^9.0.0",
+    "jsoneditor": "^4.2.1",
+    "lodash": "^3.10.1",
+    "nick_common_static": "^2.0.0",
+    "objectpath": "^1.2.1",
+    "passport": "^0.3.0",
+    "permission": "^1.0.3",
+    "requirejs": "^2.1.20",
+    "requirejs-plugins": "^1.0.2",
+    "tv4": "^1.2.7",
+    "ui-router": "0.2.15"
+  },
+  "devDependencies": {}
+}

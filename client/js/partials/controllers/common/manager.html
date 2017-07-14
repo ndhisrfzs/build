@@ -1,0 +1,60 @@
+<!--表格数据-->
+<md-content layout="row" flex>
+    <md-content flex layout="column" md-theme="dark">
+        <ng-include src="'js/partials/controllers/common/toolbar.html'"></ng-include>
+        <md-divider></md-divider>
+        <md-data-table-container flex>
+            <table md-data-table
+                   md-row-select="managerCtl.selected"
+                   md-single-row-select="true"
+                   flex
+                   md-progress="managerCtl.deferred">
+                <thead md-order="managerCtl.queryData.order"
+                       md-content="managerCtl"
+                       md-trigger="managerCtl.onOrderChange">
+                <tr>
+                    <th ng-repeat="column in managerCtl.columns"
+                        name="{{column.name}}"></th>
+                    <th name=""></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr md-auto-select
+                    style="animation-delay:.2s;"
+                    class="am-slide-bottom"
+                    ng-repeat="item in managerCtl.clientData.datas">
+                    <td ng-repeat="column in managerCtl.columns">
+                        <span dy-compile
+                              $index="$parent.$index+1"
+                              query="managerCtl.queryData"
+                              style="white-space: nowrap;"
+                              item="item" html="{{column.template}}"></span>
+                    </td>
+                    <td>
+                        <gridmenu aria-label="打开菜单"
+                                  ng-if="managerCtl.itemToolbars.length"
+                                  tools="managerCtl.itemToolbars"
+                                  item="item"
+                                  is-busy="managerCtl.isBusy"
+                                  open-menu="managerCtl.openMenu"></gridmenu>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+        </md-data-table-container>
+        <!--分页数据-->
+        <md-data-table-pagination flex="none"
+                                  md-limit="managerCtl.queryData.limit"
+                                  md-page="managerCtl.queryData.page"
+                                  md-row-select="managerCtl.rowSelect"
+                                  md-total="{{managerCtl.clientData.total}}"
+                                  md-content="managerCtl"
+                                  md-trigger="managerCtl.onPageChange">
+        </md-data-table-pagination>
+    </md-content>
+    <ng-include class="md-whiteframe-z2 am-fade-and-slide-right" ng-show="managerCtl.searchMode" layout="column"
+                flex-gt-sm="30"
+                flex="100"
+                src="'js/partials/controllers/common/search.html'"></ng-include>
+</md-content>

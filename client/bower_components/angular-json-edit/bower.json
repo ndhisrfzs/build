@@ -1,0 +1,26 @@
+{
+  "name": "angular-json-edit",
+  "version": "1.0.4",
+  "homepage": "https://github.com/Rleahy22/angularJsonEditor",
+  "authors": [
+    "rleahy22 <ryanleahy90@gmail.com>"
+  ],
+  "description": "Infinitely nesting, dependency free JSON editor for Angular",
+  "main": "dist/angularJsonEdit.js",
+  "keywords": [
+    "Angular",
+    "JSON",
+    "editor",
+    "nesting"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src",
+    "example",
+    "Gulpfile.js",
+    "karma.conf.js"
+  ]
+}

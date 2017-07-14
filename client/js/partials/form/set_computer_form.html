@@ -1,0 +1,39 @@
+<md-dialog aria-label="{{formCtl.popup.description}}"
+           md-theme="dark"
+           flex-gt-sm="80"
+           flex="100">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>选择服务器</h2>
+            <span flex></span>
+            <md-button class="md-icon-button"
+                       ng-show="!formCtl.isBusy"
+                       ng-click="formCtl.close()">
+                <ng-md-icon icon="close"></ng-md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content flex class="md-padding">
+        <md-progress-linear ng-if="formCtl.isBusy" md-mode="indeterminate"></md-progress-linear>
+        <md-radio-group ng-model="formCtl.formData">
+            <div ng-repeat="server in formCtl.servers" layout="row">
+                <div flex layout="row" layout-padding layout-align="start center" >
+                    <md-radio-button flex
+                                     ng-value="server"
+                                     class="md-primary" >
+                        {{server.serName}} {{server.serProtocol}}://{{server.serAddress}}:{{server.serPort}}
+                    </md-radio-button>
+                </div>
+            </div>
+        </md-radio-group>
+        {{ formCtl.selectedIndex }}
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+        <span flex></span>
+        <md-button ng-disabled="formCtl.isBusy"
+                   ng-click="formCtl.submit()">
+            选择服务器
+        </md-button>
+    </md-dialog-actions>
+</md-dialog>
+

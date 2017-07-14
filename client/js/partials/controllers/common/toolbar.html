@@ -1,0 +1,18 @@
+<md-data-table-toolbar ng-hide="selected.length || filter.show" aria-hidden="false">
+    <ng-md-icon ng-if="managerCtl.icon" icon="{{managerCtl.icon}}"></ng-md-icon>
+    <h2 class="md-title">{{ managerCtl.title }}</h2>
+    <div flex=""></div>
+    <div class="md-toolbar-item" layout="row">
+        <md-button ng-repeat="item in $root.toolbars"
+                   ng-click="item.onClick($event)"
+                   ng-disabled="managerCtl.isBusy"
+                   aria-label="item.title"
+                   md-theme="amazing"
+                   class="md-icon-button">
+            <md-tooltip>
+                {{item.title}}
+            </md-tooltip>
+            <ng-md-icon icon="{{ item.icon }}"></ng-md-icon>
+        </md-button>
+    </div>
+</md-data-table-toolbar>
