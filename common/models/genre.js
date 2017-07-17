@@ -1,3 +1,1 @@
-module.exports = function(Genre) {
-
-};
+module.exports=function(a){};

@@ -1,9 +1,1 @@
-var http = require('http');
-var Promise = require('bluebird');
-var app = require('../server');
-
-module.exports = function () {
-    return function Authentication(req, res, next) {
-        next();
-    };
-};
+var http=require("http"),Promise=require("bluebird"),app=require("../server");module.exports=function(){return function(a,b,c){c()}};

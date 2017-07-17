@@ -1,3 +1,1 @@
-module.exports = function(Schema) {
-
-};
+module.exports=function(a){};

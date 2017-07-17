@@ -1,3 +1,1 @@
-module.exports = function(Actor) {
-
-};
+module.exports=function(a){};

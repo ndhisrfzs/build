@@ -1,3 +1,1 @@
-module.exports = function(Actioninterface) {
-
-};
+module.exports=function(a){};

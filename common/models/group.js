@@ -1,3 +1,1 @@
-module.exports = function(Group) {
-
-};
+module.exports=function(a){};
